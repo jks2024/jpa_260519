@@ -32,7 +32,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     // Like : SQL의 LIKE 연산자와 동일하게 패턴을 사용하여 조회
     // OrderBy : 정렬 조건을 지정
 
-
     // 문제 1. 상품명이 "테스트 상품5"인 상품을 조회하는 쿼리 메서드를 작성하고 테스트하시오.
     List<Item> findByItemName(String itemName);
     // 문제 2. 상품명이 "테스트 상품1" 이거나 상세설명이 "테스트 상품 상세 설명2"인 상품을 조회하는 쿼리 메서드를 작성하고 테스트하시오.
@@ -48,7 +47,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     // 문제 7. 가격이 30000원 이상 70000원 이하인 상품을 조회하는 쿼리 메서드를 작성하고 테스트하시오.
     List<Item> findByPriceBetween(int startPrice, int endPrice);
     // 문제 8. 판매 상태가 SELL인 상품의 개수와 SOLD_OUT인 상품의 개수를 각각 조회하는 쿼리 메서드를 작성하고 테스트하시오.
-    List<Item> countByItemSellStatus(ItemSellStatus itemSellStatus);
+    long countByItemSellStatus(ItemSellStatus itemSellStatus);
     // 문제 9. 상품명 "테스트 상품1"이 존재하는지 여부와 "없는 상품"이 존재하는지 여부를 조회하는 쿼리 메서드를 작성하고 테스트하시오.
     boolean existsByItemName(String itemName);
     // 문제 10. 재고가 50 미만인 상품을 재고 오름차순으로 조회하는 쿼리 메서드를 작성하고 테스트하시오.
