@@ -3,6 +3,7 @@ package com.human.jpa.repository;
 import com.human.jpa.constant.ItemSellStatus;
 import com.human.jpa.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -52,4 +53,29 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     boolean existsByItemName(String itemName);
     // 문제 10. 재고가 50 미만인 상품을 재고 오름차순으로 조회하는 쿼리 메서드를 작성하고 테스트하시오.
     List<Item> findByStockNumberLessThanOrderByStockNumberAsc(int stockNumber);
+
+    // JPQL : JPA Query Language, 객체지향 쿼리
+    // - SQL문법과 비슷하지만 테이블명 대신 클리스명, 컬럼명 대신 필드명을 사용
+    @Query("SELECT i from Item i where i.itemDetail LIKE %:itemDetail% ORDER BY i.price desc")
+    List<Item> findByItemDetailLike(String itemDetail);
+
+    // nativeQuery : 데이터베이스에 종속 되는 Query
+    @Query(value = "SELECT * FROM item WHERE item_detail LIKE %:itemDetail% ORDER BY price DESC", nativeQuery = true)
+    List<Item> findByItemDetailLikeNative(String itemDetail);
+
+//    JPQL 문제
+//    문제 1. 가격이 50000원 미만인 상품을 가격 내림차순으로 조회하는 JPQL 쿼리를 작성하고 테스트하시오.
+//    단, 테이블명 대신 클래스명 Item, 컬럼명 대신 필드명 price를 사용할 것.
+
+//    문제 2. 판매 상태가 SELL이면서 재고가 60 미만인 상품을 조회하는 JPQL 쿼리를 작성하고 테스트하시오.
+//    단, @Param을 사용하여 파라미터를 바인딩할 것.
+
+
+//    Native 쿼리 문제
+//    문제 3. 상세설명(item_detail)에 "상세 설명1" 키워드가 포함된 상품을 조회하는 Native 쿼리를 작성하고 테스트하시오.
+//    단, nativeQuery = true 옵션과 SQL의 LIKE를 사용할 것.
+
+//    문제 4. 가격이 30000원 이상 70000원 이하인 상품을 가격 오름차순으로 조회하는 Native 쿼리를 작성하고 테스트하시오.
+//    단, SQL의 BETWEEN을 사용할 것.
+
 }
