@@ -19,7 +19,7 @@ public class Cart {
     private Long id;
 
     @Column(nullable = false)
-    private int cartName;
+    private String cartName;
 
     @OneToOne // 1대1 연관 관계 매핑
     @JoinColumn(name = "member_id")  // 매핑할 외래키
