@@ -20,7 +20,7 @@ public class CartItem {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @ManyToOne // N:1, 하나의 Item 이 여러 CartItem에 담길 수 있음 (하나의 삼풍미 여러 장자구니의 상품으러ㅗ 담길 수 있음)
+    @ManyToOne // N:1, 하나의 Item 이 여러 CartItem에 담길 수 있음 (하나의 삼풍미 여러 장자구니의 상품으로 담길 수 있음)
     @JoinColumn(name = "item_id")
     private Item item;
 
